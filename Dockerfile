@@ -13,7 +13,7 @@ RUN sed -i -e s/archive.ubuntu.com/mirror.kku.ac.th/g /etc/apt/sources.list
 RUN \
   apt-get update && \
   apt-get install -y software-properties-common && \
-  echo oracle-java11-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | debconf-set-selections && \
   add-apt-repository -y ppa:linuxuprising/java && \
   apt-get update && \
   apt-get install -y oracle-java11-installer && \
