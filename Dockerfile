@@ -20,6 +20,9 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk11-installer
 
+# Add crfpplib for process text and NLP
+ADD lib.tar.gz /usr/local/lib
+RUN ldconfig
 
 # Define working directory.
 WORKDIR /opt
