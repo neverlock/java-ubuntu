@@ -10,15 +10,14 @@ FROM ubuntu:16.04
 
 RUN sed -i -e s/archive.ubuntu.com/mirror.kku.ac.th/g /etc/apt/sources.list
 # Install Java.
-RUN \
-  apt-get update && \
+RUN apt-get update && \
   apt-get install -y software-properties-common && \
-  echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | debconf-set-selections && \
+  echo oracle-java17-installer shared/accepted-oracle-license-v1-3 select true | debconf-set-selections && \
   add-apt-repository -y ppa:linuxuprising/java && \
-  apt-get update && \
-  apt-get install -y oracle-java11-installer && \
+  apt-get update 
+RUN apt-get install -y oracle-java17-installer && \
   rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk11-installer
+  rm -rf /var/cache/oracle-jdk17-installer
 
 # Add crfpplib for process text and NLP
 ADD lib.tar.gz /usr/local/lib
@@ -28,7 +27,7 @@ RUN ldconfig
 WORKDIR /opt
 
 # Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-11-oracle
+ENV JAVA_HOME /usr/lib/jvm/java-17-oracle
 
 # Define default command.
 CMD ["bash"]
